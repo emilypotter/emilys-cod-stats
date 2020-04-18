@@ -14,7 +14,37 @@ export class LastTwentyComponent implements OnInit {
    'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
-    annotation: true
+    annotation: true,
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      xAxes: [{
+        ticks: {
+          fontColor: 'white'
+        }
+      }],
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+          ticks: {
+            fontColor: 'white'
+          }
+        },
+        {
+          id: 'y-axis-1',
+          position: 'right',
+          ticks: {
+            fontColor: 'white',
+          }
+        }
+      ]
+    },
+    legend: {
+      display: true,
+      labels: {
+        fontColor: 'white', // legend color (can be hexadecimal too)
+      }
+    }
   };
   public lineChartColors: Color[] = [
     {
@@ -46,6 +76,7 @@ export class LastTwentyComponent implements OnInit {
       });
       this.lineChartData = [
         { data: this.kills, label: 'Kills' },
+        { data: this.damage, label: 'Damage', yAxisID: 'y-axis-1' },
       ];
 
       console.log(this.lineChartData);
